@@ -1,6 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { colors } from "../../constants";
+
+// Temporary fallback colors
+const colors = {
+  primary: "#000000",
+  background: "#FFFFFF",
+  text: "#000000",
+  textSecondary: "#666666",
+  border: "#E0E0E0",
+};
 
 export default function TabLayout() {
   return (

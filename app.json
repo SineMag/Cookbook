@@ -4,7 +4,7 @@
     "slug": "Cookbook",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/favicon.ico",
+    "icon": "./frontend/images/assets/favicon.ico",
     "scheme": "cookbook",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,23 +14,23 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/favicon.ico",
-        "backgroundImage": "./assets/images/favicon.ico",
-        "monochromeImage": "./assets/images/favicon.ico"
+        "foregroundImage": "./frontend/images/assets/favicon.ico",
+        "backgroundImage": "./frontend/images/assets/favicon.ico",
+        "monochromeImage": "./frontend/images/assets/favicon.ico"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.ico"
+      "favicon": "./frontend/images/assets/favicon.ico"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/favicon.ico",
+          "image": "./frontend/images/assets/favicon.ico",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",

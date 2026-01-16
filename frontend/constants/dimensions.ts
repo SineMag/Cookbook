@@ -1,4 +1,12 @@
 export const dimensions = {
+  // Breakpoints for responsive design
+  breakpoints: {
+    sm: 320, // Small phones
+    md: 768, // Tablets
+    lg: 1024, // Small laptops
+    xl: 1280, // Desktops
+    xxl: 1536, // Large desktops
+  },
   padding: {
     xs: 4,
     sm: 8,
@@ -36,5 +44,26 @@ export const dimensions = {
     md: 24,
     lg: 32,
     xl: 40,
+  },
+  // Responsive utilities
+  container: {
+    maxWidth: {
+      sm: 540,
+      md: 720,
+      lg: 960,
+      xl: 1140,
+      xxl: 1320,
+    },
+  },
+  // Grid system
+  grid: {
+    columns: {
+      xs: 1,
+      sm: 2,
+      md: 3,
+      lg: 4,
+      xl: 5,
+    },
+    gap: 16,
   },
 };

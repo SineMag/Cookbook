@@ -7,8 +7,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { colors, dimensions } from "../../constants";
-import { ChatBot, RecipeCard } from "../../index";
+
+// Temporary fallbacks until imports are fixed
+const colors = {
+  primary: "#000000",
+  background: "#FFFFFF",
+  text: "#000000",
+  textSecondary: "#666666",
+  border: "#E0E0E0",
+};
+
+const dimensions = {
+  padding: { lg: 20, md: 15 },
+  margin: { xl: 20, lg: 15, md: 10, sm: 5, xs: 3 },
+  fontSize: { xxxl: 32, xl: 24, md: 16, sm: 14 },
+  borderRadius: { lg: 12 },
+};
 
 export default function HomeScreen() {
   const [showChatBot, setShowChatBot] = useState(false);
@@ -60,7 +74,9 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
-          <Text style={styles.title}>Coocheen</Text>
+          <View style={styles.logoPlaceholder}>
+            <Text style={styles.logoText}>🍳 Cookbook</Text>
+          </View>
           <Text style={styles.subtitle}>Discover & Create Amazing Recipes</Text>
         </View>
 
@@ -71,13 +87,23 @@ export default function HomeScreen() {
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>
-          {featuredRecipes.map((recipe) => (
+          {/* {featuredRecipes.map((recipe) => (
             <RecipeCard
               key={recipe.id}
               recipe={recipe}
               onPress={() => console.log("Recipe pressed:", recipe.id)}
             />
-          ))}
+          ))} */}
+          <Text
+            style={{
+              padding: 20,
+              backgroundColor: "#f0f0f0",
+              margin: 10,
+              borderRadius: 8,
+            }}
+          >
+            Recipe cards will appear here
+          </Text>
         </View>
 
         <View style={styles.section}>
@@ -106,10 +132,10 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      <ChatBot
+      {/* <ChatBot
         visible={showChatBot}
         onClose={() => setShowChatBot(!showChatBot)}
-      />
+      /> */}
     </View>
   );
 }
@@ -125,6 +151,25 @@ const styles = StyleSheet.create({
   header: {
     padding: dimensions.padding.lg,
     alignItems: "center",
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: dimensions.margin.sm,
+  },
+  logoPlaceholder: {
+    width: 120,
+    height: 120,
+    marginBottom: dimensions.margin.sm,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+    borderRadius: dimensions.borderRadius.lg,
+  },
+  logoText: {
+    fontSize: dimensions.fontSize.xl,
+    fontWeight: "bold",
+    color: colors.primary,
   },
   title: {
     fontSize: dimensions.fontSize.xxxl,
