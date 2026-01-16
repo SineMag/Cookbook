@@ -1,98 +1,227 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+// Temporary fallbacks until imports are fixed
+const colors = {
+  primary: "#000000",
+  background: "#FFFFFF",
+  text: "#000000",
+  textSecondary: "#666666",
+  border: "#E0E0E0",
+};
+
+const dimensions = {
+  padding: { lg: 20, md: 15 },
+  margin: { xl: 20, lg: 15, md: 10, sm: 5, xs: 3 },
+  fontSize: { xxxl: 32, xl: 24, md: 16, sm: 14 },
+  borderRadius: { lg: 12 },
+};
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const [showChatBot, setShowChatBot] = useState(false);
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  console.log("HomeScreen is rendering!");
+
+  const featuredRecipes = [
+    {
+      id: "1",
+      title: "Traditional Pasta Carbonara",
+      description: "Classic Italian pasta with eggs, cheese, and pancetta",
+      ingredients: [],
+      instructions: [],
+      cookingTime: 25,
+      difficulty: "medium" as const,
+      category: "Italian",
+      images: [],
+      videos: [],
+      authorId: "1",
+      authorName: "Chef Mario",
+      isPremium: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      likes: 245,
+      savedBy: [],
+    },
+    {
+      id: "2",
+      title: "Spicy Thai Curry",
+      description: "Authentic Thai green curry with fresh vegetables",
+      ingredients: [],
+      instructions: [],
+      cookingTime: 35,
+      difficulty: "hard" as const,
+      category: "Thai",
+      images: [],
+      videos: [],
+      authorId: "2",
+      authorName: "Chef Somchai",
+      isPremium: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      likes: 189,
+      savedBy: [],
+    },
+  ];
+
+  return (
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.header}>
+          <View style={styles.logoPlaceholder}>
+            <Text style={styles.logoText}>🍳 Cookbook</Text>
+          </View>
+          <Text style={styles.subtitle}>Discover & Create Amazing Recipes</Text>
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Featured Recipes</Text>
+            <TouchableOpacity>
+              <Text style={styles.seeAll}>See All</Text>
+            </TouchableOpacity>
+          </View>
+          {/* {featuredRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              onPress={() => console.log("Recipe pressed:", recipe.id)}
+            />
+          ))} */}
+          <Text
+            style={{
+              padding: 20,
+              backgroundColor: "#f0f0f0",
+              margin: 10,
+              borderRadius: 8,
+            }}
+          >
+            Recipe cards will appear here
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <View style={styles.actionGrid}>
+            <TouchableOpacity style={styles.actionCard}>
+              <Ionicons name="location" size={32} color={colors.primary} />
+              <Text style={styles.actionText}>Local Foods</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.actionCard}>
+              <Ionicons name="add-circle" size={32} color={colors.primary} />
+              <Text style={styles.actionText}>Add Recipe</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.actionCard}>
+              <Ionicons name="camera" size={32} color={colors.primary} />
+              <Text style={styles.actionText}>Gallery</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.actionCard}
+              onPress={() => setShowChatBot(true)}
+            >
+              <Ionicons name="chatbubble" size={32} color={colors.primary} />
+              <Text style={styles.actionText}>Chat Bot</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* <ChatBot
+        visible={showChatBot}
+        onClose={() => setShowChatBot(!showChatBot)}
+      /> */}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  scrollView: {
+    flex: 1,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  header: {
+    padding: dimensions.padding.lg,
+    alignItems: "center",
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: dimensions.margin.sm,
+  },
+  logoPlaceholder: {
+    width: 120,
+    height: 120,
+    marginBottom: dimensions.margin.sm,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+    borderRadius: dimensions.borderRadius.lg,
+  },
+  logoText: {
+    fontSize: dimensions.fontSize.xl,
+    fontWeight: "bold",
+    color: colors.primary,
+  },
+  title: {
+    fontSize: dimensions.fontSize.xxxl,
+    fontWeight: "bold",
+    color: colors.text,
+    marginBottom: dimensions.margin.xs,
+  },
+  subtitle: {
+    fontSize: dimensions.fontSize.md,
+    color: colors.textSecondary,
+    textAlign: "center",
+  },
+  section: {
+    marginBottom: dimensions.margin.xl,
+  },
+  sectionHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: dimensions.padding.lg,
+    marginBottom: dimensions.margin.md,
+  },
+  sectionTitle: {
+    fontSize: dimensions.fontSize.xl,
+    fontWeight: "600",
+    color: colors.text,
+  },
+  seeAll: {
+    fontSize: dimensions.fontSize.md,
+    color: colors.primary,
+    fontWeight: "500",
+  },
+  actionGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    paddingHorizontal: dimensions.padding.lg,
+  },
+  actionCard: {
+    width: "45%",
+    backgroundColor: colors.background,
+    borderRadius: dimensions.borderRadius.lg,
+    padding: dimensions.padding.lg,
+    alignItems: "center",
+    marginBottom: dimensions.margin.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  actionText: {
+    fontSize: dimensions.fontSize.sm,
+    color: colors.text,
+    marginTop: dimensions.margin.sm,
+    fontWeight: "500",
   },
 });

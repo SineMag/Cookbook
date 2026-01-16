@@ -1,0 +1,1 @@
+export { TraditionalFoods } from "./TraditionalFoods";
